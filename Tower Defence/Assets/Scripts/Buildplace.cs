@@ -7,12 +7,19 @@ public class Buildplace : MonoBehaviour
     //the tower to be built
     public GameObject towerPrefab;
    
-  
-   void OnMouseUpAsButton() {
-    //Build tower above Buildplace
+    private bool towerBuilt = false;
 
-    GameObject g = (GameObject)Instantiate(towerPrefab);
-    g.transform.position=transform.position+ Vector3.up;
+    void OnMouseUpAsButton() {
+        //Check if a tower has been built already
+        if (towerBuilt) {
+            return; 
+        }
 
-   }
+        //Build tower above Buildplace
+        GameObject g = (GameObject)Instantiate(towerPrefab);
+        g.transform.position=transform.position+ Vector3.up;
+
+        towerBuilt=true;
+
+    }
 }

@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour {
         // Was it a Monster? Then Shoot it
         if (co.GetComponent<Monster>()) {
             GameObject g = (GameObject)Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            //set the target location (transform) for the bullet
             g.GetComponent<Bullet>().target = co.transform;
         }
     }
