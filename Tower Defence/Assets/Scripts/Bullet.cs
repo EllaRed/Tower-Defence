@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed=10;
 
+    //target set by tower
     public Transform target;
 
     
@@ -14,8 +15,9 @@ public class Bullet : MonoBehaviour
     {
         if (target)
     {
-        Vector3 dir =target.position-transform.position;
-        GetComponent<Rigidbody>().velocity=dir.normalized*speed;
+        Vector3 direction =target.position-transform.position;
+        //move towards target
+        GetComponent<Rigidbody>().velocity=direction.normalized*speed;
     
     }else{
 
@@ -24,8 +26,9 @@ public class Bullet : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other) {
-        Health health =other.GetComponentInChildren<Health>();
+    //when bullet hits target, decrease health
+    void OnTriggerEnter(Collider co) {
+        Health health =co.GetComponentInChildren<Health>();
         if (health){
             health.Decrease();
             Destroy(gameObject);
